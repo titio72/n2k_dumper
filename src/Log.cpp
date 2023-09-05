@@ -13,10 +13,6 @@ You should have received a copy of the GNU General Public License
 along with n2k_dumper.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef ESP32_ARCH
-#include <Arduino.h>
-#endif
-
 #include "Log.h"
 #include <stdio.h>
 #include <time.h>
@@ -39,11 +35,6 @@ const char* _gettime() {
 }
 
 void _trace(const char* text) {
-    #ifdef ESP32_ARCH
-
-    Serial.print(text);
-
-    #else
 	printf("%s", text);
 	FILE* f = fopen("/var/log/nmea.log", "a+");
 	if (f==NULL) {
@@ -53,7 +44,6 @@ void _trace(const char* text) {
 		fprintf(f, "%s %s\n", _gettime(), text);
 		fclose(f);
 	}
-    #endif
 }
 
 void Log::setdebug() {

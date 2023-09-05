@@ -22,6 +22,8 @@ along with n2k_dumper.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 #include <string.h>
 
+#define _DO_DUMP
+
 N2K n2k;
 time_t last_gps_time = 0;
 unsigned long last_stw_time = 0;
@@ -114,6 +116,7 @@ void msg_handler(const tN2kMsg &N2kMsg)
     handleSOG2STW(millis(), sog);
   }
   break;
+  #ifdef _DO_DUMP
   case 129029:
   {
     int Index = 0;
@@ -204,6 +207,7 @@ void msg_handler(const tN2kMsg &N2kMsg)
     }
   }
   break;
+  #endif
   default:
     break;
   }

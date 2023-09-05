@@ -4,9 +4,12 @@ This is a sandbox project for testing features of the excellent libray https://g
 
 Initially I used to log n2k stream and analyze it later, but one day my speed sensor gave up, and I modified the code to also detect when the speed-through-water message was not on the n2k stream and replace it with the SOG (not the same, but good enough).
 
+If you don't want to dump info but just the speed-through-water emulator, just commend the line:
+#define _DO_DUMP
+
 To build:
 # make_deps.sh will download the libraries from https://github.com/ttlappalainen repositories and build them
-./make_deps.sh 
+./make_deps.sh
 mkdir build
 cd build
 cmake ..
